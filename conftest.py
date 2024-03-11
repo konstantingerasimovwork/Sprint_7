@@ -32,7 +32,20 @@ def register_new_courier_and_return_login_password():
         login_pass.append(password)
         login_pass.append(first_name)
 
-    return login_pass
+    yield login_pass
+    payload = {
+        "login": login_pass[0],
+        "password": login_pass[1]
+    }
+    response = requests.post(
+        f'{URL}/api/v1/courier/login', data=payload, timeout=10)
+    if response.status_code == 200:
+        response_json = response.json()
+        courier_id = response_json['id']
+        response_delete = requests.delete(
+            f'{URL}/api/v1/courier/{courier_id}', data=payload, timeout=10)
+        assert response_delete.status_code == 200 and response_delete.json() == {
+            'ok': True}
 
 
 @pytest.fixture(scope="function")

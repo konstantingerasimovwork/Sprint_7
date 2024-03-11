@@ -21,8 +21,7 @@ class TestLoginCourier:
         response_status_code = self.login_courier.check_response_status_code()
         response_text = self.login_courier.check_response_text()
         PostOkSchema.parse_obj(response_text)
-        assert response_status_code == 200 and 'id' in response_text, f'{response_status_code}' and {response_text}
-        self.login_courier.delete_courier(response_text['id'])
+        assert response_status_code == 200 and 'id' in response_text, f'{response_status_code} and {response_text}'
 
 
     @allure.title('Проверка логина курьера в системе с несуществующим login')
