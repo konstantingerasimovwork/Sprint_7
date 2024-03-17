@@ -1,4 +1,5 @@
-URL = 'https://qa-scooter.praktikum-services.ru'
+URL_COURIER = 'https://qa-scooter.praktikum-services.ru/api/v1/courier'
+URL_ORDER = 'https://qa-scooter.praktikum-services.ru/api/v1/orders'
 
 ORDER_INVALID_JSON = [{
     "firstName": 123,
